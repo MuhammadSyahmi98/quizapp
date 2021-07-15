@@ -12,7 +12,7 @@
      					@endif
                         <div class="module">
                             <div class="module-head">
-                                <h3>All Quiz</h3>
+                                <h3>All Questions</h3>
                             </div>
 
                             <div class="module-body">
@@ -20,46 +20,47 @@
 								  <thead>
 									<tr>
 									  <th>#</th>
-									  <th>Name</th>
-									  <th>Description</th>
-									  <th>Minutes</th>
+									  <th>Question</th>
+									  <th>Quiz</th>
+									  <th>Created</th>
 									  <th></th>
 									  <th></th>
 									  <th></th>
 									</tr>
 								  </thead>
 								  <tbody>
-								  	@if(count($quizzes)>0)
-								  	@foreach($quizzes as $key=>$quiz)
+								  	@if(count($questions)>0)
+                                    <?php
+                                        $i =0;
+                                    ?>
+								  	@foreach($questions as $question)
+                                      
 									<tr>
-									  <td>{{$key+1}}</td>
-									  <td>{{$quiz->name}}</td>
-									  <td>{{$quiz->description}}</td>
-									  <td>{{$quiz->minutes}}</td>
+									  <td>{{$i = $i+1}}</td>
+									  <td>{{$question->question}}</td>
+									  <td>{{$question->quiz->name}}</td>
+									  <td>{{date('F d,Y',strtotime($question->created_at))}}</td>
 									  <td>
-									  	<a href="{{ route('quiz-question', $quiz->id) }}"> 
-									  		<button class="btn btn-inverse">View Questions</button>
-									  	</a>
+									  	<a href="{{route('question-show',$question->id)}}"> <button class="btn btn-info">View</button></a>
 									  </td>
 									  
 									  <td>
-									  		<a href="{{route('quiz-edit', $quiz->id)}}">
+									  		<a href="{{ route('question-edit', $question->id) }}">
 									  			<button class="btn btn-primary">Edit</button>
 
 									  		</a>
 
 									  </td>
-
 									  <td>
 
-									  	<form id="delete-form{{$quiz->id}}" method="POST" action="{{route('quiz-delete', $quiz->id)}}" >@csrf
+									  	<form id="delete-form{{$question->id}}" method="POST" action="{{ route('question-delete', $question->id) }}" >@csrf
 									  		{{method_field('DELETE')}}
 
 									  	</form>
 									  	<a href="#" onclick="if(confirm('Do you want to delete?')){
 
 									  		event.preventDefault();
-									  		document.getElementById('delete-form{{$quiz->id}}').submit()
+									  		document.getElementById('delete-form{{$question->id}}').submit()
 									  	}else{
 									  		event.preventDefault();
 									  	}
@@ -71,18 +72,19 @@
 
 
 									  </td>
-									  
 									</tr>
 									@endforeach
 
 									@else
-									<td>No quiz to display</td>
+									<td>No question to display</td>
 									@endif
 									
 									
 								  </tbody>
 								</table>
-						
+								<div class="pagination pagination-centered" >
+									{{$questions->links()}}
+								</div>
                        		</div>
                    		</div>
                 		

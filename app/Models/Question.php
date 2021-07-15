@@ -23,4 +23,23 @@ class Question extends Model
     public function answers(){
         return $this->hasMany(Answer::class);
     }
+
+    public function storeQuestion($data){
+        $data['quiz_id'] = $data['quiz'];
+        return Question::create($data);
+    }
+
+    public function updateQuestion($id, $request){
+        $question = Question::findOrFail($id);
+        $question->question = $request->question;
+        $question->quiz_id = $request->quiz;
+        $question->save();
+        return $question;
+    }
+
+    public function deleteQuestion($id){
+        Question::where('id', $id)->delete();
+    }
+
+    
 }
