@@ -17,8 +17,12 @@
                     <ul class="widget widget-menu unstyled">
                         <li><a href="{{route('question-create')}}"><i class="menu-icon icon-bold"></i> Create Question </a></li>
                         <li><a href="{{route('question-index')}}"><i class="menu-icon icon-book"></i>View Questions </a></li>
-                        <li><a href="form.html"><i class="menu-icon icon-paste"></i>Forms </a></li>
-                        <li><a href="table.html"><i class="menu-icon icon-table"></i>Tables </a></li>
+                        
+                    </ul>
+
+                    <ul class="widget widget-menu unstyled">
+                        <li><a href="{{route('user-create')}}"><i class="menu-icon icon-paste"></i>Create User </a></li>
+                        <li><a href="{{route('user-index')}}"><i class="menu-icon icon-table"></i>View User </a></li>
                         <li><a href="charts.html"><i class="menu-icon icon-bar-chart"></i>Charts </a></li>
                     </ul>
                     <!--/.widget-nav-->

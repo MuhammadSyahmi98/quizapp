@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\User;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -46,4 +47,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function storeUser($data){
+        $data['visible_password'] = $data['password'];
+        $data['password'] = bcrypt($data['password']);
+        $data['is_admin'] = 0;
+        return User::create($data);
+    }
+
+    public function updateUser($id, $data){
+        $user = User::findOrFail($id);
+        $user->name = $data['name'];
+        $user->visible_password = $data['password'];
+        $user->password = bcrypt($data['password']);
+        $user->occupation = $data['occupation'];
+        $user->address = $data['address'];
+        $user->phone = $data['phone'];
+
+        return $user->save();
+    }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuestionController;
 
 /*
@@ -54,5 +55,23 @@ Route::put('/question/edit/{id}', [QuestionController::class, 'update'])->name('
 Route::post('/question/create', [QuestionController::class, 'store'])->name('question-store');
 
 // End question
+
+// =================================================================================================
+
+
+// =================================================================================================
+
+// Here is User
+
+Route::get('/user', [UserController::class, 'index'])->name('user-index');
+Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user-destroy');
+Route::get('/user/create', [UserController::class, 'create'])->name('user-create');
+Route::post('/user/create', [UserController::class, 'store'])->name('user-store');
+
+Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user-edit');
+Route::put('/user/edit/{id}', [UserController::class, 'update'])->name('user-update');
+
+
+// End User
 
 // =================================================================================================
