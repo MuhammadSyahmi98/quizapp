@@ -23,7 +23,13 @@
                     <ul class="widget widget-menu unstyled">
                         <li><a href="{{route('user-create')}}"><i class="menu-icon icon-paste"></i>Create User </a></li>
                         <li><a href="{{route('user-index')}}"><i class="menu-icon icon-table"></i>View User </a></li>
-                        <li><a href="charts.html"><i class="menu-icon icon-bar-chart"></i>Charts </a></li>
+            
+                    </ul>
+
+                    <ul class="widget widget-menu unstyled">
+                        <li><a href="{{route('exam-create')}}"><i class="menu-icon icon-paste"></i>Assign Exam</a></li>
+                        <li><a href="{{route('exam-index')}}"><i class="menu-icon icon-table"></i>View User Exam</a></li>
+            
                     </ul>
                     <!--/.widget-nav-->
                     <ul class="widget widget-menu unstyled">

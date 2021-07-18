@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuestionController;
@@ -79,6 +80,19 @@ Route::group(['middleware'=>'isAdmin'], function(){
 
 
     // End User
+
+    // =================================================================================================
+
+    // =================================================================================================
+
+    // Here is Exam
+
+    Route::get('/exam/assign', [ExamController::class, 'create'])->name('exam-create');
+    Route::post('/exam/assign', [ExamController::class, 'store'])->name('exam-store');
+    Route::get('/exam/user', [ExamController::class, 'index'])->name('exam-index');
+    Route::post('/exam/user', [ExamController::class, 'removeAssign'])->name('exam-destroy');
+
+    // End Exam
 
     // =================================================================================================
 
